@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   scope module: :public do
-    devise_for :customers, skip: [:passwords,], controllers: {
+    devise_for :customers, skip: [:passwords], controllers: {
       registrations: "public/registrations",
       sessions: 'public/sessions'
     }
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :orders, except: [:edit, :update, :destroy]
     post 'orders/confirm' => 'orders#confirm'
-    get '/orders/complete' => 'orders#complete'
+    get 'orders/complete' => 'orders#complete'
     resources :addresses, except: [:new, :show]
   end
 
