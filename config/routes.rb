@@ -8,15 +8,15 @@ Rails.application.routes.draw do
 
     root to: 'homes#top'
     get 'about' => 'homes#about'
-    resources :customers, only: [:edit, :show, :update]
     get 'customers/unsubscribe' => 'customers#unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw'
+    resources :customers, only: [:edit, :show, :update]
     resources :items, only: [:index, :show]
-    resources :cart_items, except: [:new, :edit, :show]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
-    resources :orders, except: [:edit, :update, :destroy]
+    resources :cart_items, except: [:new, :edit, :show]
     post 'orders/confirm' => 'orders#confirm'
     get 'orders/complete' => 'orders#complete'
+    resources :orders, except: [:edit, :update, :destroy]
     resources :addresses, except: [:new, :show]
   end
 
