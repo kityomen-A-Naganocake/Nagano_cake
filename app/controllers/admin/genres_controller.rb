@@ -7,6 +7,7 @@ class Admin::GenresController < ApplicationController
     end
     
     def create
+        @genre = Genre.
     end
     
     def update
