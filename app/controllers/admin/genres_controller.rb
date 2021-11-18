@@ -4,6 +4,7 @@ class Admin::GenresController < ApplicationController
         @genre = Genre.new
         @genres = Genre.all
     end
+    
 
     def edit
         @genre = Genre.find(params[:id])
