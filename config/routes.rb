@@ -10,7 +10,8 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
     get 'customers/unsubscribe' => 'customers#unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw'
-    resources :customers, only: [:edit, :show, :update]
+    get 'customers/my_page' => 'customers#show'
+    resources :customers, only: [:edit, :update]
     resources :items, only: [:index, :show]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :cart_items, except: [:new, :edit, :show]
