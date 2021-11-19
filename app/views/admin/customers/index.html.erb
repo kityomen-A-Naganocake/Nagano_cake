@@ -16,20 +16,16 @@
           </thead>
           <tbody>
           <!--会員情報を表示-->
-          <%# @customer.each do |customer| %>
+          <% @customers.each do |customer| %>
             <tr>
               <!--会員情報のID・氏名（フルネーム）・メールアドレス・退会ステータスを表示-->
-              <td><%#= customer.id %></td>
-              <td>
-                <%#= link_to admin_customer_path(customer) %>
-                <%#= full_name(customer) %>
-                <%# end %>
-              <td>
-              <td><%#= customers.email %></td>
+              <td><%= customer.id %></td>
+              <td><%= link_to customer.full_name, admin_customer_path(customer) %><td>
+              <td><%= customer.email %></td>
               <!--退会ステータス（イーナム）追加予定-->
-              <td><%#= customers.is_deleted %></td>
+              <td><%#= customer.is_deleted %></td>
             </tr>
-          <%# end %>
+          <% end %>
           </tbody>
       </table>
     </div>

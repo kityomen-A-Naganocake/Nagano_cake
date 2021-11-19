@@ -1,3 +1,46 @@
 <hi>パブリックの、ホームズの、トップ。トップページだよー</hi>
 
 <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+<div>
+  <!--開発途中　　削除予定-->
+  <!--<h2>ジャンル検索</h2>-->
+  <%# genre.each do |genre| %>
+  <%#= link_to genre.name, item_path(genre.id) %>
+  <%# end %>
+</div>
+<div class="container">
+  <div>
+    <!--ながのCAKE紹介文-->
+    <p>ようこそ、ながのCAKEへ！</p>
+    <p>このサイトは、ケーキ販売のECサイトになります。</p>
+    <p>会員でないかたも商品の閲覧はできますが、</p>
+    <p>購入には会員登録が必要になります。</p>
+  </div>
+  <div class="col-md-8 offset-md-1">
+    <!--ランダムでアイテム４件表示-->
+    <h2>新着商品</h2>
+        <table class="table table-hover table-inverse">
+          <tbody>
+            <!--ランダムでアイテム４件表示されるように追加予定-->
+            <%# @random.each do |item| %>
+            <tr>
+              <td>
+                <!--アイテム画像表示-->
+                <%#= link_to item_path(item.id) do %>
+                  <!--ここの画像はまだわからない、アイテム画像追加予定-->
+                  <%#= attachment_image_tag book.user, :profile_image, :fill, 50, 50,fallback: "no_image.jpg"%>
+                <%# end %>
+              </td>
+              <!--商品名と税抜き価格のリンク表示-->
+              <td><%#= link_to item.name, item_path(item.id) %></td>
+              <td><%#= link_to item.price_no_tax,  item_path(item.id)%></td>
+            </tr>
+            <%# end %>
+          </tbody>
+      </table>
+  </div>
+  <div>
+    <!--アイテム一覧画面に飛ぶ-->
+   <%= link_to "全ての商品を見る", items_path %>
+  </div>
+</div>
