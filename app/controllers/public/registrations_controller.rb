@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Customers::RegistrationsController < Devise::RegistrationsController
+class Public::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -59,4 +59,27 @@ class Customers::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  
+  
+   before_action :configure_permitted_parameters, if: :devise_controller?
+  def after_sign_in_path_for(resource)
+      root_path
+
+  end
+
+  def after_sign_up_path_for(resource)
+      customers_my_page_path
+
+  end
+
+
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :first_name, :last_name, :first_name_kana, :last_name_kana, :zip_code, :address, :telephone_number])
+  end
+
+
+
 end
