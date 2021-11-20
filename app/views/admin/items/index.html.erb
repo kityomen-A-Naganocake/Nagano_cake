@@ -1,1 +1,31 @@
-<h1>アドミンのアイテムのインデックスページ。商品一覧ページ。商品ID 商品名 税抜価格 ジャンル ステータス見れるよー。商品名押したら商品の詳細に飛ぶよー</h1>
+<h1>商品一覧 kaminariはヤマトさんが作る</h1>
+<h2><%= link_to '＋新規登録', new_admin_item_path %></h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @admin_items.each do |item| %>
+        <tr>
+            <td><%= item.id %></td>
+            <td><%= link_to item.name, admin_item_path(item.id) %></td>
+            <td><%= item.price_no_tax %></td>
+            <td><%= item.genre.name %></td>
+            <td>
+                <% if item.is_active == true %>
+                    販売中
+                <% else %>
+                    販売停止中
+                <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
