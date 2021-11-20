@@ -44,8 +44,10 @@
   </p>
   <p>
     <!--退会ステータス制作予定-->
-    <%#= f.label :"会員ステータス" %>
+    <%= f.label :"会員ステータス" %>
     <%#= f.text_field :is_deleted %>
+    <%= link_to "退会する", withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" } %>
+    <%= link_to "退会しない", customer_path(current_customer) %>
   </p>
   <!--編集を保存-->
   <nav><%= f.submit '変更を保存' %></nav>
