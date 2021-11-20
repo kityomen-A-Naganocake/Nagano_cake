@@ -21,13 +21,4 @@ class Customer < ApplicationRecord
           validates :address, presence: true
           validates :telephone_number, presence: true
          
-          # 会員フルネーム
-          def full_name
-            self.first_name + " " + self.last_name
-          end
-          # 会員カナフルネーム
-          def kana_full_name
-            self.first_name_kana + " " + self.last_name_kana
-          end
-
 end
