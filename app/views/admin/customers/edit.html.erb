@@ -46,9 +46,9 @@
     <!--退会ステータス（退会・有効）表示-->
     <%= f.label :"会員ステータス" %>
   　　<%= f.radio_button :is_deleted, true %>
-        <%= f.label :is_valid, "退会", {value: :true, style: "display: inline-block;"} %>
+        <%= f.label :is_deleted, "退会" %>
       <%= f.radio_button :is_deleted, false %>
-        <%= f.label :is_valid, "有効", {value: :false, style: "display: inline-block;"} %>
+        <%= f.label :is_deleted, "有効" %>
   </p>
   <!--編集を保存-->
   <nav><%= f.submit '変更を保存' %></nav>
