@@ -11,7 +11,7 @@ class Customer < ApplicationRecord
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
           validates :email, presence: true
           validates :last_name, presence: true
           validates :first_name, presence: true
@@ -20,5 +20,7 @@ class Customer < ApplicationRecord
           validates :zip_code, presence: true
           validates :address, presence: true
           validates :telephone_number, presence: true
-
+         
 end
+
+
