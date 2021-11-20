@@ -10,10 +10,17 @@
     <p>ぜひご注文ください。</p>
   </div>
   <div>
-      <!--アイテム画像表示-->
-    <%#= link_to item_path(item.id) do %>
-        <!--ここの画像はまだわからない、アイテム画像追加予定-->
-        <%#= attachment_image_tag book.user, :profile_image, :fill, 50, 50,fallback: "no_image.jpg"%> 
-     <%# end %>
+    <!--新着を1件表示-->
+    <% @items.first(1). each do |item| %>
+    <tr>
+        <td>
+            <!--アイテム画像表示-->
+            <%= link_to item_path(item.id) do %>
+            <!--アイテム画像を表示-->
+                <%= attachment_image_tag item, :image, :fill, 800, 400 %>
+            <% end %>
+        </td>
+    </tr>
+    <% end %>
   </div>
 </div>
