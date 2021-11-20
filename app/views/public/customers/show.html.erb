@@ -1,4 +1,26 @@
 <h1>パブリックのカスタマーのショー。マイページの画面だよー。登録情報編集のボタン、配送先配送先、一覧を見るのボタン。注文履歴一覧のボタンを見るがるよー</h1>
-
+<h1>マイページ</h1>
 
 <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+
+
+<h1>登録情報</h1><%= link_to "編集する", customers_edit_path %>
+
+<h2>氏名</h2>
+<%= current_customer.first_name %><%= current_customer.last_name %>
+<h2>カナ</h2>
+<%= current_customer.first_name_kana %><%= current_customer.last_name_kana %>
+<h2>郵便番号</h2>
+<%= current_customer.zip_code %>
+<h2>住所</h2>
+<%= current_customer.address %>
+<h2>電話番号</h2>
+<%= current_customer.telephone_number %>
+<h2>メールアドレス</h2>
+<%= current_customer.email %>
+<h1>配送先</h1>
+<%= link_to "一覧を見る",  addresses_path, class:'btn btn-block btn-outline-secondary' %>
+<h1>注文履歴</h1>
+<%= link_to "一覧を見る",  orders_path, class: 'btn btn-default' %>
+
+
