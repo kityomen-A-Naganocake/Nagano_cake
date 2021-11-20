@@ -43,11 +43,12 @@
     <%= f.text_field :email %>
   </p>
   <p>
-    <!--退会ステータス制作予定-->
+    <!--退会ステータス（退会・有効）表示-->
     <%= f.label :"会員ステータス" %>
-    <%#= f.text_field :is_deleted %>
-    <%= link_to "退会する", withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" } %>
-    <%= link_to "退会しない", customer_path(current_customer) %>
+  　　<%= f.radio_button :is_deleted, true %>
+        <%= f.label :is_valid, "退会", {value: :true, style: "display: inline-block;"} %>
+      <%= f.radio_button :is_deleted, false %>
+        <%= f.label :is_valid, "有効", {value: :false, style: "display: inline-block;"} %>
   </p>
   <!--編集を保存-->
   <nav><%= f.submit '変更を保存' %></nav>
