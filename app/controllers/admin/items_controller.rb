@@ -25,9 +25,19 @@ class Admin::ItemsController < ApplicationController
     end
 
     def edit
+        @admin_item = Item.find(params[:id])
+        @genres = Genre.all
     end
 
     def update
+        item = Item.find(params[:id])
+        if item.update(item_params)
+            redirect_to admin_item_path(item)
+        else
+            @admin_item = Item.find(params[:id])
+            @genres = Genre.all
+            render edit
+        end
     end
 
 
