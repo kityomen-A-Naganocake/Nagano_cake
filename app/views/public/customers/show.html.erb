@@ -4,7 +4,7 @@
 <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
 
 
-<h1>登録情報</h1><%= link_to "編集する", edit_customer_path(current_customer) %>
+<h1>登録情報</h1><%= link_to "編集する", customers_edit_path %>
 
 <h2>氏名</h2>
 <%= current_customer.first_name %><%= current_customer.last_name %>
