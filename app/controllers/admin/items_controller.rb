@@ -1,39 +1,39 @@
 class Admin::ItemsController < ApplicationController
-    
+
     def index
         @admin_items = Item.all
     end
-    
+
     def new
         @admin_item = Item.new
         @genres = Genre.all
     end
-    
+
     def create
         item = Item.new(item_params)
-        if item.update
-            redirect_to admin_item(item.id)
+        if item.save
+            redirect_to admin_item_path(item.id)
         else
-            @admin_item = Item.
+            @admin_item = Item.new
             @genres = Genre.all
-            render new_admin_item
+            render new_admin_item_path
         end
     end
-    
+
     def show
     end
-    
-    def edit 
+
+    def edit
     end
-    
+
     def update
     end
-    
-    
+
+
     private
-    
+
     def item_params
-        params.require(:list).permit(:name, :price_no_tax, :description, :is_active, :genre, :image)
+        params.require(:item).permit(:name, :price_no_tax, :description, :is_active, :genre_id, :image)
     end
-    
+
 end

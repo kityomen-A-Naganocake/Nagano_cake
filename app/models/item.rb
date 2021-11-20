@@ -1,4 +1,4 @@
 class Item < ApplicationRecord
     attachment :image
-    validates :name, :price_no_tax, :genre_id, :is_active, :description, :image_id presence:true
+    validates :name, :price_no_tax, :genre_id, :is_active, :description, :image, presence:true
 end
