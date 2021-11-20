@@ -11,6 +11,7 @@
           <thead>
             <th>会員ID</th>
             <th>氏名</th>
+            <th></th>
             <th>メールアドレス</th>
             <th>ステータス</th>
           </thead>
@@ -28,6 +29,10 @@
           <% end %>
           </tbody>
       </table>
+      <div>
+        <!--kaminariで１０件表示 -->
+        <%= paginate @customers %>
+      </div>
     </div>
   </div>
 </div>

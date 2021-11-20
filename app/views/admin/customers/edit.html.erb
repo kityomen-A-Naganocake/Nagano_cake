@@ -1,4 +1,15 @@
 <h1>アドミンのカスタマーのエディットページ。管理者が会員情報編集できるよーの</h1>
+<!--バリデーションのエラーメッセージ表示-->
+<% if @customer.errors.any? %>
+  <div class="error">
+    <h3><%= @customer.errors.count %> errors prohibited this obj from being saved</h3>
+    <ul>
+      <% @customer.errors.full_messages.each do |message| %>
+        <li class="error-message"><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 <div>
   <!--会員のフルネームを表示-->
 <h2><%= @customer.full_name %>さんの会員情報編集</h2>
