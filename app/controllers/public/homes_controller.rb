@@ -5,7 +5,8 @@ class Public::HomesController < ApplicationController
          @items = Item.all.order(created_at: :desc)
     end
     
-    def about
+    def 
+        #アイテムを新着順で投稿表示  created_atは作成日時　descは降順   ascは昇順
         @items = Item.all.order(created_at: :desc)
     end
     
