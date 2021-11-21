@@ -7,6 +7,7 @@ class Public::AddressesController < ApplicationController
      end
      
      def edit
+          @shipping_address = ShippingAddress.find(params[:id])
      end
      
      def create
@@ -18,6 +19,11 @@ class Public::AddressesController < ApplicationController
      end
      
      def update
+          @shipping_address = ShippingAddress.find(params[:id])
+          @shipping_address.update(shipping_address_params)
+      redirect_to  addresses_path
+   
+          
      end
      
      def destroy

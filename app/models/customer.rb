@@ -9,7 +9,7 @@ class Customer < ApplicationRecord
   end
   
   # 配送先とのアソシエーション
-    has_many :shippingaddresses, dependent: :destroy
+    has_many :shipping_addresses, dependent: :destroy
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
