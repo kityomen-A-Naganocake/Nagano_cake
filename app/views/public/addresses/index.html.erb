@@ -1,1 +1,20 @@
 <h1>パブリックの、アドレスの、インデックス。配送先配送先登録と、配送先一覧のページ。配送先の編集と削除のボタンもあるよー</h1>
+
+<h1>配送先登録/一覧</h1>
+<%= form_with model: @shipping_address_path, local: true do |f| %>
+  <%= f.label :郵便番号 %>
+  <%= f.text_field :zip_code %>
+   <%= f.label :住所 %>
+  <%= f.text_field :address %>
+  <%= f.label :宛名 %>
+  <%= f.text_field :recipients_name %>
+  <%= f.submit "新規登録" %>
+<% end %>
+
+<%  @shipping_addresses.each do |shipping_address| %>
+  <p><%= shipping_address.zip_code %></p>
+  <p><%= shipping_address.address %></p>
+  <p><%= shipping_address.recipients_name %></p>
+  <%= link_to "編集", edit_address_path(shipping_address.id) %>
+<% end %>
+
