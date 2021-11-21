@@ -1,1 +1,11 @@
 <h1>パブリックの、オーダーズの、confirm。注文情報確認の画面。注文を確定するのボタンあるよー</h1>
+<h2>注文確認画面</h2>
+  <%= @order.amount %>
+  <%= @order.quantity %>
+  <%= @item.name %>
+  <%= @item.price %>
+<%= form_with model:[@item, @order], url:(item_order_path) do |f| %>
+  <%= f.hidden_field :amount %>
+  <%= f.hidden_field :quantity %>
+  <%= f.submit %>
+<% end %>

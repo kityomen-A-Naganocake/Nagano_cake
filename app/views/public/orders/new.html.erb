@@ -1,1 +1,38 @@
 <h1>パブリックの、オーダーズの、ニュー。注文情報入力の画面やと思う。確認画面へ進むの</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <!--注文情報入力画面を表示-->
+      <h2>注文情報入力</h2>
+    </div>
+  </div>
+    <div class="col-md-8 offset-md-1">
+      <div class="row">
+        <!--支払い方法選択-->
+        <strong>お支払い方法</strong>
+      </div>
+      <%= form_tag(orders_path, method: :post) do %>
+      <div>
+        <!--クレジットか銀行振り込みに変える-->
+        <%= radio_button_tag :payment, :クレジットカード %>
+        <%= label_tag :payment, "クレジットカード", {value: :"クレジットカード", style: "display: inline-block;"} %><br>
+        <%= radio_button_tag :payment, :銀行振込 %>
+        <%= label_tag :payment, "銀行振込", {value: :"銀行振込", style: "display: inline-block;"} %>
+      </div>
+      <div class="row">
+        <!--お届け先選択-->
+        <strong>お届け先</strong>
+      </div>
+      <div>
+        <% address = current_customer.zip_code + current_customer.address + current_customer.last_name + current_customer.first_name %>
+        <%= radio_button_tag :select, :my_address %>
+        <%= label_tag :select, "ご自身の住所", {value: :my_address, style: "display: inline-block;"} %>
+        <%= address %><br>
+        <%= radio_button_tag :select, :select_address %>
+        <%= select_tag :address, options_for_select(@shipping_addresses.map do |shipping|
+        ["〒" + shipping.zip_code + "  " + shipping_addresses + "  " + shipping.id]
+          end), {include_blank: '配送先を選択'} %>
+        </div>
+      </div>
+    </div>
+</div>
