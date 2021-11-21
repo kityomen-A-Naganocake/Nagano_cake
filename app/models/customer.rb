@@ -8,6 +8,8 @@ class Customer < ApplicationRecord
     super && (is_deleted == false)
   end
   
+  # 配送先とのアソシエーション
+    has_many :shippingaddresses, dependent: :destroy
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
