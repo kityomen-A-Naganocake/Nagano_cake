@@ -1,1 +1,48 @@
 <h1>アドミンのカスタマーのショーページ。会員の詳細情報見れるよー。編集ページに飛ぶボタンもあるよー。注文商品一覧を見るページににも飛べるボタンあるよー</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <!--会員の詳細画面を表示-->
+      <h2><%= @customer.full_name %>さんの会員詳細</h2>
+      <table class="table table-user-show">
+        <tr>
+          <p>
+            会員ID　              <%= @customer.id %>
+          </p>
+          <p>
+            氏名                  <%= @customer.full_name %>
+          </p>
+          <p>
+            フリガナ              <%= @customer.kana_full_name %>
+          </p>
+          <p>
+            郵便番号              <%= @customer.zip_code %>
+          </p>
+          <p>
+            住所                  <%= @customer.address %>
+          </p>
+          <p>
+            電話番号              <%= @customer.telephone_number %>
+          </p>
+          <p>
+            メールアドレス        <%= @customer.email %>
+          </p>
+          <p>
+            <!--退会ステータス表示-->
+            会員ステータス  <% if @customer.is_deleted == true%>
+                              <p>退会</p>
+                            <% else %>
+                              <p>有効</p>
+                            <% end %>
+          </p>
+          <%# end %>
+          <!--編集・注文履歴一覧のリンクを表示する-->
+          <td><%= link_to "編集する", edit_admin_customer_path(@customer) %></td>
+          <td><%= link_to "注文履歴一覧をみる", admin_orders_path(@customer) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
