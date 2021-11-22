@@ -1,16 +1,18 @@
 class Customer < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  
+
   # ログインの時退会してる人のバリデーション的な！？
   # is_deletedがfalseならtrueを返すようにしている
   def active_for_authentication?
     super && (is_deleted == false)
   end
-  
+
   # 配送先とのアソシエーション
     has_many :shipping_addresses, dependent: :destroy
-  
+    
+    has_many :cart_items, dependent: :destroy
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -22,7 +24,7 @@ class Customer < ApplicationRecord
           validates :zip_code, presence: true
           validates :address, presence: true
           validates :telephone_number, presence: true
-         
+
          # 会員フルネーム
           def full_name
             self.first_name + " " + self.last_name

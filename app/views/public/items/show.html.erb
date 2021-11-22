@@ -16,8 +16,12 @@
             <p><h3>￥<%= (@item.price_no_tax * 1.1).floor %> (税込)</h3></p>
           </td>
           <!--個数選択とカート機能追加予定-->
-          <td></td>
-          <td></td>
+          <%= form_with model:@cart_item, url:cart_items_path, local:true do |f| %>
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <%= f.hidden_field :customer_id, value: current_customer.id %>
+            <td><%= f.select :quantity, *[1..10] %></td>
+            <td><%= f.submit 'カートに入れる', class:"btn btn-success" %></td>
+          <% end %>
         </tr>
       </table>
     </div>
