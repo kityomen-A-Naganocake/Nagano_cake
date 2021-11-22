@@ -6,7 +6,7 @@ class CartItem < ApplicationRecord
         (item.price_no_tax * 1.10).floor
     end
 
-    def total_price
+    def sub_total
         item.add_tax_price_no_tax * quantity
     end
 
