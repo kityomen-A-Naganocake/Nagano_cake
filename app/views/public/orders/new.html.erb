@@ -12,27 +12,68 @@
         <strong>お支払い方法</strong>
       </div>
       <%= form_tag(orders_path, method: :post) do %>
-      <div>
-        <!--クレジットか銀行振り込みに変える-->
-        <%= radio_button_tag :payment, :クレジットカード %>
-        <%= label_tag :payment, "クレジットカード", {value: :"クレジットカード", style: "display: inline-block;"} %><br>
-        <%= radio_button_tag :payment, :銀行振込 %>
-        <%= label_tag :payment, "銀行振込", {value: :"銀行振込", style: "display: inline-block;"} %>
-      </div>
-      <div class="row">
-        <!--お届け先選択-->
-        <strong>お届け先</strong>
-      </div>
-      <div>
-        <% address = current_customer.zip_code + current_customer.address + current_customer.last_name + current_customer.first_name %>
-        <%= radio_button_tag :select, :my_address %>
-        <%= label_tag :select, "ご自身の住所", {value: :my_address, style: "display: inline-block;"} %>
-        <%= address %><br>
-        <%= radio_button_tag :select, :select_address %>
-        <%= select_tag :address, options_for_select(@shipping_addresses.map do |shipping|
-        ["〒" + shipping.zip_code + "  " + shipping_addresses + "  " + shipping.id]
-          end), {include_blank: '配送先を選択'} %>
+        <div>
+          <!--クレジットか銀行振り込みに変える-->
+          <%= radio_button_tag :payment, :クレジットカード %>
+          <%= label_tag :payment, "クレジットカード", {value: :"クレジットカード", style: "display: inline-block;"} %><br>
+          <%= radio_button_tag :payment, :銀行振込 %>
+          <%= label_tag :payment, "銀行振込", {value: :"銀行振込", style: "display: inline-block;"} %>
         </div>
+        <div class="row">
+          <!--お届け先選択-->
+          <strong>お届け先</strong>
+        </div>
+        <div>
+          <% address = current_customer.zip_code + current_customer.address + current_customer.last_name + current_customer.first_name %>
+          <%= radio_button_tag :select, :my_address %>
+          <%= label_tag :select, "ご自身の住所", {value: :my_address, style: "display: inline-block;"} %>
+          <%= address %><br>
+          <%= radio_button_tag :select, :select_address %>
+          <%= select_tag :address, options_for_select(@shipping_addresses.map do |shipping|
+          ["〒" + shipping.zip_code + "  " + shipping_address + "  " + shipping.id]
+            end), {include_blank: '配送先を選択'} %>
+          </div>
+          <div class="row"><%= f.submit '確認画面に進む' %></div>
+      <% end %>
+          <div class="row">
+            <!--お届け先選択-->
+            <strong>新しいお届け先を登録する</strong>
+          </div>
+          <!--作成途中-->
+            <%= form_withmodel: @shipping_address, url:orders_create_shipping_address_path do |f| %>
+                   <div class="field">
+              <%= f.label :名前%><br />
+              <%= f.label :（姓） %><%= f.text_field :first_name %><%= f.label :（名）%><%= f.text_field :last_name %>
+            </div>
+              
+            <div class="field">
+                <%= f.label :フリガナ%><br />
+                <%= f.label :（セイ） %><%= f.text_field :first_name_kana %><%= f.label :（メイ）%><%= f.text_field :last_name_kana %>
+            </div>
+          
+            <div class="field">
+              <%= f.label :メールアドレス%><br />
+              <%= f.email_field :email %>
+            </div>
+            
+            <div class="field">
+              <%= f.label :郵便番号（ハイフンなし）%><br />
+              <%= f.text_field :zip_code %>
+            </div>
+            
+            <div class="field">
+              <%= f.label :住所%><br />
+              <%= f.text_field :address %>
+            </div>
+          
+            <div class="field">
+              <%= f.label :電話番号（ハイフンなし）%><br />
+              <%= f.text_field :telephone_number %>
+            </div>
+          
+          
+            <%= f.submit "編集内容を保存" %>
+          <% end %>
       </div>
     </div>
 </div>
