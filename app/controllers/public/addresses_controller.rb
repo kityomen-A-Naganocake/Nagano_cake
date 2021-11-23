@@ -2,7 +2,7 @@ class Public::AddressesController < ApplicationController
      
      def index
           @shipping_address = ShippingAddress.new
-          @shipping_addresses = ShippingAddress.all
+          @shipping_addresses = ShippingAddress.where(customer_id: current_customer.id)
           
      end
      
@@ -21,8 +21,7 @@ class Public::AddressesController < ApplicationController
      def update
           @shipping_address = ShippingAddress.find(params[:id])
           @shipping_address.update(shipping_address_params)
-      redirect_to  addresses_path
-   
+          redirect_to  addresses_path
           
      end
      
