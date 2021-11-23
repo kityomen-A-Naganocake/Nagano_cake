@@ -7,6 +7,13 @@ class Public::OrdersController < ApplicationController
     end
     
     def new
+        #@shipping_addresses = ShippingAddress.where(customer: current_customer)
+        #@sipping_addre = Sippingaddress.new
+        @order = Order.new
+        
+        #@orders = current_customer.orders.all
+        @customer = Customer.find(current_customer.id)
+        @shipping_addresses = @customer.shipping_addresses
     end
     
     def confirm
@@ -18,20 +25,20 @@ class Public::OrdersController < ApplicationController
     end
     
     def create
-    @item = Item.find(params[:item_id])
-    @order = @item.order.new(order_params)
-    @order.save
-    redirect_to items_path
+        @item = Item.find(params[:item_id])
+        @order = @item.order.new(order_params)
+        @order.save
+        redirect_to items_path
     end
     
     
     private
     
     def order_params
-        params.require(:order).permit(:customer_id,:address,:item_id,:payment_amount,:shipping_cost,:status)
+        params.require(:order).permit(:customer_id,:zip_code,:sipping_address,:addressitem_id,:payment_amount,:shipping_cost,:status)
     end
     # もしかしたらshipping_addresses_paramsかも
-    def address_params
+    def shipping_addresses_params
         params.require(:order).permit(:customer_id,:last_name,:first_name,:zip_code,:address)
     end
     # 商品合計（税込）の計算
