@@ -26,6 +26,9 @@ class Public::AddressesController < ApplicationController
      end
      
      def destroy
+          @shipping_address  = ShippingAddress.find(params[:id])
+          @shipping_address.destroy
+          redirect_to addresses_path#destroyメソッドを使用し対象のツイートを削除する。
      end
      
      private
