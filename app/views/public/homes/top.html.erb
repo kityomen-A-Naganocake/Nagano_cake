@@ -13,7 +13,7 @@
           <tbody>
             <!--新着を４件表示-->
             <% @items.first(4). each do |item| %>
-            <tr>
+            
               <td>
                 <!--アイテム画像表示-->
                 <%= link_to item_path(item.id) do %>
@@ -26,7 +26,6 @@
                    <%= (item.price_no_tax * 1.1).floor %> 円</p>
                    <% end %>
               </td>
-            </tr>
             <% end %>
           </tbody>
       </table>
