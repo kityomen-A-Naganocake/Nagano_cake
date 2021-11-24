@@ -1,14 +1,37 @@
-<h1>パブリックのアドレスのエディット。配送先編集ページ。</h1>
+<div class="container">
 <%#= form_with(model: @shipping_addresses, url:shipping_addresses_path, local: true) do |f| %>
 <%#= form_with model: @shipping_addresses, url:shipping_addresses_path, local: true do |f| %>
-
-<%= form_with model: @shipping_address, url: address_path, local:true do |f| %>
-  <%= f.label :郵便番号 %>
-  <%= f.text_field :zip_code %>
-   <%= f.label :住所 %>
-  <%= f.text_field :address %>
-  <%= f.label :宛名 %>
-  <%= f.text_field :recipients_name %>
-  <%= f.submit "編集オッケでーす" %>
-
-<% end %>
+    <h1>配送先編集</h1>
+    <table>
+        
+        <%= form_with model: @shipping_address, url: address_path, local:true do |f| %>
+          <th>
+          <%= f.label :郵便番号 %>
+          </th>
+          
+          <th>
+          <%= f.text_field :zip_code %>
+          </th>
+          
+          <th>
+           <%= f.label :住所 %>
+          </th>
+          
+          <th>
+            <%= f.text_field :address %>
+          </th>
+          
+          <th>
+            <%= f.label :宛名 %>
+          </th>
+          
+          <th>
+            <%= f.text_field :recipients_name %>
+          </th>
+          
+          <th>
+            <%= f.submit "変更内容を保存", class: "btn btn-outline-primary  btn-lg" %>
+          </th>
+        <% end %>
+    </table>
+</div>
