@@ -1,4 +1,4 @@
-<h1>商品一覧 kaminariはヤマトさんが作る</h1>
+<h1>商品一覧</h1>
 <h2><%= link_to '＋新規登録', new_admin_item_path %></h2>
 
 <table>
@@ -29,3 +29,4 @@
         <% end %>
     </tbody>
 </table>
+<%= paginate @admin_items %>
