@@ -1,2 +1,19 @@
-<h1>アドミンの、オーダーの、インデックス。注文履歴一覧</h1>
-<%= link_to 'ログアウト',  destroy_admin_session_path, method: :delete %>
+<div class="container">
+
+
+
+ <% @orders .each do |order| %>
+ <table>
+    <td><%= link_to order.created_at, admin_order_path(order.id) %></td>
+    <td><%= order.customer.full_name %></td>
+    <td><%#= order.order.quantity %></td>
+    <% @sum = 0 %>
+    <% order.order_details.each do |order_detail| %>
+    <td><% @sum += order_detail.quantity %></td>
+    <% end %>
+    <td><%= @sum %></td>
+    <td><%= order.status_i18n %></td>
+    
+ <% end %>
+ </table>
+ </div>
