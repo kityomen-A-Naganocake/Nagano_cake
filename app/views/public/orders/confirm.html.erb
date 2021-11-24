@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <!--会員一覧を表示-->
+      <!--カートに入れた商品を一覧-->
       <h2>ご注文内容</h2>
     </div>
     <div class="col-md-8 offset-md-1">
@@ -14,15 +14,16 @@
             <th>小計</th>
           </thead>
           <tbody>
-          <!--会員情報を表示-->
+          <!--カートに入れた商品を表示-->
           <% current_customer.cart_items.each do |cart_item| %>
             <tr>
               <td>
+                <!--カートに入れた商品の画像を表示-->
                 <%= attachment_image_tag cart_item.item, :image, :size => '50x50',fallback: "no_image.jpg" %>
                 <span> </span>
                 <%= cart_item.item.name %>
               </td>
-              <!--会員情報のID・氏名（フルネーム）・メールアドレス・退会ステータスを表示-->
+              <!--カートに入れた商品の値段・個数を表示-->
               <td><%= (cart_item.item.price_no_tax * 1.1).floor %></td>
               <td><%= cart_item.quantity %><td>
               <td><%= (cart_item.item.price_no_tax * 1.1).floor * cart_item.quantity %></td>
@@ -31,7 +32,7 @@
           <% end %>
           </tbody>
       </table>
-<!-- 金額の情報 -->
+　　　<!-- 金額・お届け先を表示 -->
       <div class="col-2 d-flex">
         <table class="table table-sm table-borderless align-self-end">
           <tbody>
@@ -54,6 +55,7 @@
           <div class="offset-2 col-6">
             <div class="row mt-3">
               <strong class="red-border px-3 mr-3">お支払い方法</strong>
+              <span class="brown-border px-3"><%= @order.payment_method %></span>
             </div>
             <div class="row mt-3">
               <strong>　お届け先　</strong>
@@ -64,7 +66,18 @@
             </div>
           </div>
           <div class="col-3">
-            <%=link_to "購入を確定する", orders_complete_path %>
+　　　　　　<!--注文を保存-->
+            <%= form_with model:@order, url:orders_path, local:true do |f| %>
+              <%= f.hidden_field :zip_code, value: @order.zip_code %>
+              <%= f.hidden_field :customer_id, value: current_customer.id %>
+              <%= f.hidden_field :shipping_address, value: @order.shipping_address %>
+      　       <%= f.hidden_field :shipping_name, value: @order.shipping_name %>
+      　       <%= f.hidden_field :shipping_cost, value: 800 %>
+      　       <%= f.hidden_field :payment_amount, value: @cart_item_total_price %>
+      　       <%= f.hidden_field :payment_method, value: @order.payment_method %>
+      　       <!--確認画面に進むとカートの商品が削除される-->
+              <%= f.submit "確認画面に進む" %>
+            <% end %>
           </div>
         </div>
       </div>
