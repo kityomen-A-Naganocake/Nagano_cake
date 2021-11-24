@@ -15,7 +15,6 @@ class Public::OrdersController < ApplicationController
 
     def confirm
         @order = Order.new(order_params)
-        # 　　address_number と定義した1～3の番号でif文を作成
         if params[:order][:address_number] == "1"
             # ここにはカレントカスタマーの住所が飛んできます
             @order.shipping_address = current_customer.address
