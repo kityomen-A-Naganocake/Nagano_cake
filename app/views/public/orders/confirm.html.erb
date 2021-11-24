@@ -1,11 +1,73 @@
-<h1>パブリックの、オーダーズの、confirm。注文情報確認の画面。注文を確定するのボタンあるよー</h1>
-<h2>注文確認画面</h2>
-  <%= @order.amount %>
-  <%= @order.quantity %>
-  <%= @item.name %>
-  <%= @item.price %>
-<%= form_with model:[@item, @order], url:(item_order_path) do |f| %>
-  <%= f.hidden_field :amount %>
-  <%= f.hidden_field :quantity %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <!--会員一覧を表示-->
+      <h2>ご注文内容</h2>
+    </div>
+    <div class="col-md-8 offset-md-1">
+
+        <table class="table table-hover table-inverse">
+          <thead>
+            <th>商品</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </thead>
+          <tbody>
+          <!--会員情報を表示-->
+          <% current_customer.cart_items.each do |cart_item| %>
+            <tr>
+              <td>
+                <%= attachment_image_tag cart_item.item, :image, :size => '50x50',fallback: "no_image.jpg" %>
+                <span> </span>
+                <%= cart_item.item.name %>
+              </td>
+              <!--会員情報のID・氏名（フルネーム）・メールアドレス・退会ステータスを表示-->
+              <td><%= (cart_item.item.price_no_tax * 1.1).floor %></td>
+              <td><%= cart_item.quantity %><td>
+              <td><%= (cart_item.item.price_no_tax * 1.1).floor * cart_item.quantity %></td>
+              <% @cart_item_total_price += cart_item.sub_total %>
+            </tr>
+          <% end %>
+          </tbody>
+      </table>
+<!-- 金額の情報 -->
+      <div class="col-2 d-flex">
+        <table class="table table-sm table-borderless align-self-end">
+          <tbody>
+            <tr class="brown-border">
+              <td>送料</td>
+              <td>800円</td>
+            </tr>
+            <tr class="brown-border">
+              <td>商品合計</td>
+              <td>¥<%= @cart_item_total_price %></tb>
+            </tr>
+            <tr class="brown-border">
+              <td>請求金額</td>
+              <td>¥<%= @cart_item_total_price + 800 %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+        <div class="row mt-5">
+          <div class="offset-2 col-6">
+            <div class="row mt-3">
+              <strong class="red-border px-3 mr-3">お支払い方法</strong>
+            </div>
+            <div class="row mt-3">
+              <strong>　お届け先　</strong>
+              <span>
+                <p>〒<%= @order.zip_code %>&emsp;<%= @order.shipping_address %></p>
+                <p><%= @order.shipping_name %></p>
+              </span>
+            </div>
+          </div>
+          <div class="col-3">
+            <%=link_to "購入を確定する", orders_complete_path %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

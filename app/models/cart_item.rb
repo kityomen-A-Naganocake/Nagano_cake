@@ -9,5 +9,4 @@ class CartItem < ApplicationRecord
     def sub_total
         item.add_tax_price_no_tax * quantity
     end
-
 end
