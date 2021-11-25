@@ -2,9 +2,9 @@
 <%#= form_with(model: @shipping_addresses, url:shipping_addresses_path, local: true) do |f| %>
 <%#= form_with model: @shipping_addresses, url:shipping_addresses_path, local: true do |f| %>
     <h1>配送先編集</h1>
+    <%= form_with model: @shipping_address, url: address_path, local:true do |f| %>
     <table>
         
-        <%= form_with model: @shipping_address, url: address_path, local:true do |f| %>
           <th>
           <%= f.label :郵便番号 %>
           </th>
