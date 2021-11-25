@@ -1,4 +1,7 @@
 class Admin::CustomersController < ApplicationController
+  
+  before_action :baria_admin
+
 
     def index
         #kaminariで１０件表示
@@ -23,7 +26,16 @@ class Admin::CustomersController < ApplicationController
     end
 
     private
-	def customer_params
-	  params.require(:customer).permit(:first_name,:last_name,:first_name_kana,:last_name_kana,:zip_code,:address,:telephone_number,:password,:email,:is_deleted)
-	end
+    
+  	def customer_params
+  	  params.require(:customer).permit(:first_name,:last_name,:first_name_kana,:last_name_kana,:zip_code,:address,:telephone_number,:password,:email,:is_deleted)
+  	end
+	
+	
+    def baria_admin
+        unless admin_signed_in?
+            redirect_to new_admin_session_path
+        end
+    end
+
 end
