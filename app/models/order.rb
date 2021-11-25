@@ -12,6 +12,6 @@ class Order < ApplicationRecord
     end
 
     def sub_total
-         order_detail.item.add_tax_price_no_tax * quantity
+        item.add_tax_price_no_tax * quantity
     end
 end
