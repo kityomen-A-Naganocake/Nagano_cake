@@ -8,20 +8,21 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  
 
   <body>
     <header>
       <% if admin_signed_in? %>
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <span class="navbar-brand"><%= image_tag 'S__22970372_0.jpg', class: "image", size: "450x100" %></span>
+          <span class="navbar-brand"><%= image_tag 'S__22970372_0.jpg', class: "image", size: "400x100" %></span>
           <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-              <li class="mx-5"><%= link_to '商品一覧', admin_items_path %></li>
-              <li class="mx-5"><%= link_to '会員一覧', admin_customers_path %></li>
-              <li class="mx-5"><%= link_to '注文履歴一覧', admin_orders_path %></li>
-              <li class="mx-5"><%= link_to 'ジャンル一覧', admin_genres_path %></li>
-              <li class="mx-5"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+              <li class="mx-2"><%= link_to '商品一覧', admin_items_path, class:"btn btn-primary" %></li>
+              <li class="mx-2"><%= link_to '会員一覧', admin_customers_path,class:"btn btn-primary" %></li>
+              <li class="mx-2"><%= link_to '注文履歴一覧', admin_orders_path, class:"btn btn-primary" %></li>
+              <li class="mx-2"><%= link_to 'ジャンル一覧', admin_genres_path, class:"btn btn-primary" %></li>
+              <li class="mx-2"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class:"btn btn-danger" %></li>
             </ul>
           </div>
         </div>
@@ -29,14 +30,14 @@
       <% elsif customer_signed_in?  %>
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <span class="navbar-brand"><%= link_to image_tag("S__22970372_0.jpg", class: "image", size: "450x100"), root_path %></span>
-          <p>ようこそ、<%= current_customer.full_name %>さん！</p>
+          <span class="navbar-brand"><%= link_to image_tag("S__22970372_0.jpg", class: "image", size: "400x100"), root_path %></span>
+          <p class='ml-4'>ようこそ、<%= current_customer.full_name %>さん！</p>
           <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-              <li class="mx-5"><%= link_to 'マイページ', customers_my_page_path %></li>
-              <li class="mx-5"><%= link_to '商品一覧', items_path %></li>
-              <li class="mx-5"><%= link_to 'カート', cart_items_path %></li>
-              <li class="mx-5"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
+              <li class="mx-2"><%= link_to 'マイページ', customers_my_page_path, class:"btn btn-primary" %></li>
+              <li class="mx-2"><%= link_to '商品一覧', items_path, class:"btn btn-primary" %></li>
+              <li class="mx-2"><%= link_to 'カート', cart_items_path, class:"btn btn-primary" %></li>
+              <li class="mx-2"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class:"btn btn-danger" %></li>
             </ul>
           </div>
         </div>
@@ -44,13 +45,13 @@
       <% else %>
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <span class="navbar-brand"><%= link_to image_tag("S__22970372_0.jpg", class: "image", size: "450x100"), root_path %></span>
+          <span class="navbar-brand"><%= link_to image_tag("S__22970372_0.jpg", class: "image", size: "400x100"), root_path %></span>
           <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-              <li class="mx-5"><%= link_to 'About', about_path %></li>
-              <li class="mx-5"><%= link_to '商品一覧', items_path %></li>
-              <li class="mx-5"><%= link_to '新規登録', new_customer_registration_path %></li>
-              <li class="mx-5"><%= link_to 'ログイン', new_customer_session_path %></li>
+              <li class="mx-2"><%= link_to 'About', about_path, class:"btn btn-primary" %></li>
+              <li class="mx-2"><%= link_to '商品一覧', items_path, class:"btn btn-primary" %></li>
+              <li class="mx-2"><%= link_to '新規登録', new_customer_registration_path, class:"btn btn-primary" %></li>
+              <li class="mx-2"><%= link_to 'ログイン', new_customer_session_path, class:"btn btn-success" %></li>
             </ul>
           </div>
         </div>
@@ -59,7 +60,7 @@
     </header>
 
     <%= yield %>
-    
+
     <footer>
       <div class="container mt-5  border-top border-dark mg">
         <div class="row"></div>
