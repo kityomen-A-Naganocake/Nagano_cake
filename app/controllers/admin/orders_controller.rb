@@ -5,7 +5,9 @@ class Admin::OrdersController < ApplicationController
     end
 
     def show
+        @order = Order.find(params[:id])
         
+        @carts = OrderDetail.where(order_id: params[:id])
     end
     
     def update

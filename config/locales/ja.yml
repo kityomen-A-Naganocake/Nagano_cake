@@ -20,3 +20,12 @@
           in_production: "製作中" # enumで番号と紐付けた要素
           in_preparation_for_shipment: "発送準備中" # enumで番号と紐付けた要素
           already_shipped: "発送済み" # enumで番号と紐付けた要素
+  
+  ja: #日本語の設定を行う
+    enums: # enumの設定を行う
+      order_details: #モデル名
+        production_status: #カラム名
+          not_permitted: "着手不可" # enumで番号と紐付けた要素
+          waiting_for_production: "制作待ち" # enumで番号と紐付けた要素
+          in_production: "製作中" # enumで番号と紐付けた要素
+          complete_production: "制作完了 " # enumで番号と紐付けた要素
