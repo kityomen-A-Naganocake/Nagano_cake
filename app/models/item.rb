@@ -4,7 +4,7 @@ class Item < ApplicationRecord
     validates :is_active, inclusion:  {in: [true, false]}
     belongs_to :genre
     has_many :cart_items, dependent: :destroy
-    
+    has_many :order_details
     def  add_tax_price_no_tax
         (self.price_no_tax * 1.10).round
     end
