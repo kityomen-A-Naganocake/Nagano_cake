@@ -63,7 +63,7 @@
         <td><%= cart.quantity %></td>
         <td><%= cart.quantity*cart.price %></td>
         
-        <td><%= form_with model: cart, url: admin_order_path, method: :patch, local:true do |f| %>
+        <td><%= form_with model: cart, url: admin_order_detail_path(cart), method: :patch, local:true do |f| %>
         <%= f.select :production_status, [['着手不可',"not_permitted"],['制作待ち',"waiting_for_production"], ['製作中',"in_production"], ['制作完了',"complete_production"]] %><%= f.submit '更新', class:"btn btn-success" %>
         <% end %>
         </td>

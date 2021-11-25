@@ -34,7 +34,10 @@ Rails.application.routes.draw do
     resources :items, except: [:destroy]
     resources :genres, except: [:new, :show, :destroy]
     resources :customers, except: [:create, :new, :destroy]
+    # resources :order_detail, only: [:update]
+    patch 'order_update/:id' => 'order_details#update', as: 'order_detail'
     resources :orders, only: [:index, :show, :destroy, :update]
+    
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

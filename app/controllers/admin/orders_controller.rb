@@ -8,22 +8,23 @@ class Admin::OrdersController < ApplicationController
 
     def show
         @order = Order.find(params[:id])
-        
-        @carts = OrderDetail.where(order_id: params[:id])
+        @carts = @order.order_details
+
+        # @carts = OrderDetail.where(order_id: params[:id])
     end
     
     def update
+        # 注文ステータスの変更
         @order = Order.find(params[:id])
-        
         @order.update(order_params)
-        
         # ↓イーナムの１だよ〜
-        
         if @order.status == "confirmation_of_payment"
-        
-            @order.order_details.update_all(production_status: 1)
+           @order.order_details.update_all(production_status: 1)
         end
         redirect_to admin_order_path(@order.id)
+
+
+
     end
     
     def baria_admin
@@ -37,6 +38,11 @@ class Admin::OrdersController < ApplicationController
 		  params.require(:order).permit(:status, :customer_id, :shipping_address, :zip_code,
 		  :shipping_name, :shipping_cost, :payment_amount, :payment_method)
 	end
+
+	
+	
+	    
+	
 
 
 end
