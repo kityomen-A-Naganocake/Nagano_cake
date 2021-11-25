@@ -20,7 +20,7 @@ class Public::OrdersController < ApplicationController
             # ここにはカレントカスタマーの住所が飛んできます
             @order.shipping_address = current_customer.address
             @order.zip_code = current_customer.zip_code
-            @order.shipping_name = current_customer.last_name + current_customer.first_name
+            @order.shipping_name = current_customer.first_name + current_customer.last_name
         elsif params[:order][:address_number] == "2"
             # ここには選択した住所のIDが飛んできます
             @shipping_address = ShippingAddress.find(params[:order][:address_id].to_i)
