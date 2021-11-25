@@ -1,12 +1,12 @@
+
 <div class="container">
   <div class="row">
     <div class="col-md-3">
       <!--カートに入れた商品を一覧-->
       <h2>ご注文内容</h2>
     </div>
-    <div class="col-md-8 offset-md-1">
-
-        <table class="table table-hover table-inverse">
+    <div class="col-md-12">
+        <table class="table table-bordered">
           <thead>
             <th>商品</th>
             <th>単価(税込)</th>
@@ -20,52 +20,60 @@
               <td>
                 <!--カートに入れた商品の画像を表示-->
                 <%= attachment_image_tag cart_item.item, :image, :size => '50x50',fallback: "no_image.jpg" %>
-                <span> </span>
                 <%= cart_item.item.name %>
               </td>
               <!--カートに入れた商品の値段・個数を表示-->
               <td><%= (cart_item.item.price_no_tax * 1.1).floor %></td>
-              <td><%= cart_item.quantity %><td>
+              <td><%= cart_item.quantity %></td>
               <td><%= (cart_item.item.price_no_tax * 1.1).floor * cart_item.quantity %></td>
               <% @cart_item_total_price += cart_item.sub_total %>
             </tr>
           <% end %>
           </tbody>
       </table>
-　　　<!-- 金額・お届け先を表示 -->
-      <div class="col-2 d-flex">
-        <table class="table table-sm table-borderless align-self-end">
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <table class="table table-bordered">
+        　<!-- 金額・お届け先を表示 -->
           <tbody>
-            <tr class="brown-border">
+            <tr>
               <td>送料</td>
               <td>800円</td>
             </tr>
-            <tr class="brown-border">
+            <tr>
               <td>商品合計</td>
               <td>¥<%= @cart_item_total_price %></tb>
             </tr>
-            <tr class="brown-border">
+            <tr>
               <td>請求金額</td>
               <td>¥<%= @cart_item_total_price + 800 %></td>
             </tr>
           </tbody>
         </table>
       </div>
-        <div class="row mt-5">
-          <div class="offset-2 col-6">
-            <div class="row mt-3">
-              <strong class="red-border px-3 mr-3">お支払い方法</strong>
-              <span class="brown-border px-3"><%= @order.payment_method_i18n %></span>
-            </div>
-            <div class="row mt-3">
-              <strong>　お届け先　</strong>
-              <span>
-                <p>〒<%= @order.zip_code %>&emsp;<%= @order.shipping_address %></p>
-                <p><%= @order.shipping_name %></p>
-              </span>
-            </div>
+        <div class="col-4">
+          <div class="col-md-12">
+            <strong>お支払い方法</strong><br>
+            <span><p><%= @order.payment_method_i18n %></p></span>
           </div>
-          <div class="col-3">
+          <div class="col-md-12">
+            <strong>お届け先</strong>
+            <span>
+              <p>
+                〒<%= @order.zip_code %><br>
+                <%= @order.shipping_address %><br>
+                <%= @order.shipping_name %>
+              </p>
+            </span>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-2  mx-auto">
 　　　　　　<!--注文を保存-->
             <%= form_with model:@order, url:orders_path, local:true do |f| %>
               <%= f.hidden_field :zip_code, value: @order.zip_code %>
