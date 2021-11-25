@@ -28,7 +28,7 @@ def change_status(cart)
             if order_detail.production_status == "complete_production"
                count += 1
             end
-          o
+          
     end
         if count == cart.order.order_details.count
         cart.order.update(status: "in_preparation_for_shipment" )
