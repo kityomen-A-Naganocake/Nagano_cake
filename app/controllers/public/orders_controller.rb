@@ -1,9 +1,13 @@
 class Public::OrdersController < ApplicationController
 
     def index
+        @orders = current_customer.orders
     end
 
     def show
+        @order = current_customer.orders.find(params[:id])
+        @order_details = @order.order_details
+        
     end
 
     def new
@@ -20,7 +24,7 @@ class Public::OrdersController < ApplicationController
             # ここにはカレントカスタマーの住所が飛んできます
             @order.shipping_address = current_customer.address
             @order.zip_code = current_customer.zip_code
-            @order.shipping_name = current_customer.last_name + current_customer.first_name
+            @order.shipping_name = current_customer.first_name + current_customer.last_name
         elsif params[:order][:address_number] == "2"
             # ここには選択した住所のIDが飛んできます
             @shipping_address = ShippingAddress.find(params[:order][:address_id].to_i)
@@ -47,10 +51,6 @@ class Public::OrdersController < ApplicationController
     end
 
     def complete
-       # @item = current_customer.cart_items
-       # @item.destroy_all
-        current_customer.cart_items.destroy_all
-        #cart_items.destroy_all
     end
 
     # 購入を確定します

@@ -1,5 +1,7 @@
 class Admin::OrdersController < ApplicationController
+     before_action :baria_admin
 
+        
     def index
         @orders = Order.all.page(params[:page]).per(10)
     end
@@ -13,6 +15,11 @@ class Admin::OrdersController < ApplicationController
     def update
         
     end
-
+    
+    def baria_admin
+        unless admin_signed_in?
+        redirect_to new_admin_session_path
+        end
+    end
 
 end
