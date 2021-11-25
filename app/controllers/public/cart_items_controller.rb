@@ -1,4 +1,7 @@
 class Public::CartItemsController < ApplicationController
+    
+    before_action :baria_cart
+    
 
     def index
         @cart_items = CartItem.where(customer_id: current_customer.id)
@@ -40,6 +43,12 @@ class Public::CartItemsController < ApplicationController
 
     def cart_item_params
         params.require(:cart_item).permit(:item_id, :quantity, :customer_id)
+    end
+    
+    def baria_cart
+        unless customer_signed_in?
+            redirect_to root_path
+        end
     end
 
 
