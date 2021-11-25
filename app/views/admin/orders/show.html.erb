@@ -6,8 +6,8 @@
           
           <tr>
           　<td>購入者</td>
-            <td><%= @order.customer.full_name %><td>
-          
+            <td><%= link_to @order.customer.full_name, admin_customer_path(@order.customer.gitid) %><td>
+          </tr>
           <tr>
           　<td>注文日</td>
             <td><%= @order.created_at %></td>
@@ -56,26 +56,41 @@
   </thead>
   <tbody>
     <% @carts.each do |cart| %>
-    <tr>
-      <th scope="row"><%= cart.item.name %></th>
-      <td><%= cart.price %></td>
-      <td><%= cart.quantity %></td>
-      <td><%= cart.quantity*cart.price %></td>
+      <tr>
+        <th scope="row"><%= cart.item.name %></th>
+        <td><%= cart.price %></td>
+        <td><%= cart.quantity %></td>
+        <td><%= cart.quantity*cart.price %></td>
+        
+        <%= form_with model:@cart, local:true do |f| %>
+        <td><%= f.select :production_status, [['着手不可',0],['制作待ち',1], ['製作中',2], ['制作完了',3]] %><%= f.submit '更新', class:"btn btn-success" %></td>
+        <% end %>
+      </tr>
       
-      <%= form_with model:@cart, local:true do |f| %>
-      <td><%= f.select :production_status, [['着手不可',0],['制作待ち',1], ['製作中',2], ['制作完了',3]] %><%= f.submit '更新', class:"btn btn-success" %></td>
-      <% end %>
-              
-              
-
-
-
-    </tr>
+      
     <% end %>
   </tbody>
 </table>
-    </div>
-    
-    
-    </div>
+      <table>
+       <tr>
+         <td>商品合計</td>
+         <td>¥<%= @order.payment_amount %>円</td>
+       </tr>
+       <tr>
+         <td>送料</td>
+         <td>800円</td>
+       </tr>
+       <tr>
+         <td>請求金額合計</td>
+         <td>¥<%= @order.payment_amount + 800 %>円</td>
+       </tr>
+
+     </table>
+     
+  
+   
+   
+   
+   
+   
 </div>
