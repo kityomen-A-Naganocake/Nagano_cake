@@ -13,7 +13,17 @@ class Admin::OrdersController < ApplicationController
     end
     
     def update
+        @order = Order.find(params[:id])
         
+        @order.update(order_params)
+        
+        # ↓イーナムの１だよ〜
+        
+        if @order.status == "confirmation_of_payment"
+        
+            @order.order_details.update_all(production_status: 1)
+        end
+        redirect_to admin_order_path(@order.id)
     end
     
     def baria_admin
@@ -21,5 +31,12 @@ class Admin::OrdersController < ApplicationController
         redirect_to new_admin_session_path
         end
     end
+
+    private
+	def order_params
+		  params.require(:order).permit(:status, :customer_id, :shipping_address, :zip_code,
+		  :shipping_name, :shipping_cost, :payment_amount, :payment_method)
+	end
+
 
 end

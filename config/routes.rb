@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     resources :items, except: [:destroy]
     resources :genres, except: [:new, :show, :destroy]
     resources :customers, except: [:create, :new, :destroy]
-    resources :orders, only: [:index, :show, :destroy]
+    resources :orders, only: [:index, :show, :destroy, :update]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
