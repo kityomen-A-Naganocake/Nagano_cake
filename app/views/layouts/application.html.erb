@@ -36,7 +36,7 @@
       <% elsif customer_signed_in?  %>
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <span class="navbar-brand"><%= link_to image_tag("S__22970372_0.jpg", class: "image", size: "400x100"), root_path %></span>
+          <span class="navbar-brand"><%= link_to image_tag("S__22970372_0.jpg", class: "image", size: "400x100"), root_path %>
           <p class='ml-12'>ようこそ、<%= current_customer.full_name %>さん！</p>
           <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
@@ -52,7 +52,6 @@
               </li>
             </ul>
           </div>
-        </div>
       </nav>
       <% else %>
       <nav class="navbar navbar-expand-lg">
@@ -85,5 +84,7 @@
       </div>
     </footer>
   </body>
+          </div>
+
 </html>
 
