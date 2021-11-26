@@ -1,0 +1,73 @@
+
+
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "public/shared/error_messages", resource: resource %>
+
+<table class="table">
+   
+  
+  <tbody>
+
+  <tr class="table">
+
+    <td><%= f.label :名前%></td>
+    <td><%= f.text_field :first_name, :placeholder => "姓" %><%= f.label :　%><%= f.text_field :last_name, :placeholder => "名" %></td>
+  </tr>
+  
+<tr class="table">
+      <td><%= f.label :フリガナ%></td>
+      <td><%= f.text_field :first_name_kana, :placeholder => "セイ" %><%= f.label :　%><%= f.text_field :last_name_kana, :placeholder => "メイ" %></td>
+</tr>
+
+  <tr class="table">
+    <td><%= f.label :メールアドレス%></td>
+    <td><%= f.email_field :email %></td>
+  </tr>
+  
+  <tr class="table">
+    <td><%= f.label :郵便番号（ハイフンなし）%></td>
+    <td><%= f.text_field :zip_code %></td>
+   </tr>
+  
+  <tr class="table">
+    <td><%= f.label :住所%></td>
+    <td><%= f.text_field :address %></td>
+  </tr>
+
+  <tr class="table">
+    <td><%= f.label :電話番号（ハイフンなし）%></td>
+    <td><%= f.text_field :telephone_number %></td>
+  </tr>
+
+  <tr class="table">
+    <td><%= f.label :パスワード %>
+    <% if @minimum_password_length %>
+    (<%= @minimum_password_length %> characters minimum)</td>
+    <% end %><br />
+    <td><%= f.password_field :password %></td>
+  </div>
+  </tr>
+  
+  <tr class="table">
+    <td><%= f.label :パスワード（確認用） %></td>
+    <td><%= f.password_field :password_confirmation %></td>
+  </tr>
+
+<div class="d-grid gap-2 col-6 mx-auto">
+  <td><%= f.submit "新規登録", class: "button_custom btn btn-success center-block" %></td>
+</div>
+  
+
+<tr class="table">
+<p>すでに登録済みの方は
+<%= render "public/shared/links" %>
+からログインしてください</p>
+</tr>
+
+<% end %>
+
+
+  </tbody>
+</table>

@@ -1,0 +1,26 @@
+  ja: #日本語の設定を行う
+    enums: # enumの設定を行う
+      order: #モデル名
+        payment_method: #カラム名
+          credit_card: "クレジットカード" # enumで番号と紐付けた要素
+          transfer: "銀行振込" # enumで番号と紐付けた要素
+          
+          
+          # 制作ステータスのイーナム
+          #enum status: { waiting_for_payment: 0, confirmation_of_payment: 1, in_production: 2, in_preparation_for_shipment: 3, already_shipped: 4}
+          #注文ステータス：0.入金待ち・           1.入金確認                 ・2.製作中・       3.発送準備中・                  4.発送済み   enum
+
+
+        status: #カラム名
+          waiting_for_payment: "入金待ち" # enumで番号と紐付けた要素
+          confirmation_of_payment: "入金確認" # enumで番号と紐付けた要素
+          in_production: "製作中" # enumで番号と紐付けた要素
+          in_preparation_for_shipment: "発送準備中" # enumで番号と紐付けた要素
+          already_shipped: "発送済み" # enumで番号と紐付けた要素
+  
+      order_details: #モデル名
+        production_status: #カラム名
+          not_permitted: "着手不可" # enumで番号と紐付けた要素
+          waiting_for_production: "制作待ち" # enumで番号と紐付けた要素
+          in_production: "製作中" # enumで番号と紐付けた要素
+          complete_production: "制作完了 " # enumで番号と紐付けた要素
