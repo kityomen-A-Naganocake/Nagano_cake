@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
+      <%= attachment_image_tag @item, :image, :fill, 300, 300 %>
     </div>
     <div class="col-md-8 offset-md-1">
       <!--アイテムの詳細画面を表示-->
-      <table class="table table-user-show">
+      <table class="table border border-dark">
         <tr>
           <!--アイテム画像を表示-->
-          <tb><%= attachment_image_tag @item, :image, :fill, 150, 150 %></tb>
           <td>
             <!--商品名・商品説明・税込価格を表示-->
             <h2><%= @item.name %></h2>

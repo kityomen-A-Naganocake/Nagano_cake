@@ -16,10 +16,10 @@
   <div class="col-md-8 offset-md-1">
     <!--ランダムでアイテム４件表示-->
     <h2>新着商品</h2>
-        <table class="table table-hover table-inverse">
+        <table class="table table-bordered">
           <tbody>
-            <!--新着を４件表示-->
-            <% @items.first(4). each do |item| %>
+            <!--新着を5件表示-->
+            <% @items.first(5). each do |item| %>
             
               <td>
                 <!--アイテム画像表示-->
@@ -38,6 +38,7 @@
       </table>
   </div>
   <div>
+    <div class="mb-4" align=right>
     <!--アイテム一覧画面に飛ぶ-->
    <%= link_to "全ての商品を見る", items_path %>
   </div>
