@@ -1,4 +1,7 @@
 class Admin::ItemsController < ApplicationController
+    
+    before_action :baria_admin
+
 
     def index
         @admin_items = Item.all.page(params[:page]).per(3)
@@ -46,5 +49,12 @@ class Admin::ItemsController < ApplicationController
     def item_params
         params.require(:item).permit(:name, :price_no_tax, :description, :is_active, :genre_id, :image)
     end
+    
+    def baria_admin
+        unless admin_signed_in?
+            redirect_to new_admin_session_path
+        end
+    end
+
 
 end

@@ -1,4 +1,7 @@
 class Admin::GenresController < ApplicationController
+    
+    before_action :baria_admin
+
 
     def index
         @genre = Genre.new
@@ -36,5 +39,13 @@ class Admin::GenresController < ApplicationController
     def genre_params
         params.require(:genre).permit(:name)
     end
+    
+
+    def baria_admin
+        unless admin_signed_in?
+            redirect_to new_admin_session_path
+        end
+    end
+
 
 end
