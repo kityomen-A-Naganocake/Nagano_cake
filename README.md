@@ -5,7 +5,7 @@ application up and running.
 
 Things you may want to cover:
 # rairs s
-* Ruby version
+・ Ruby version
 
 * System dependencies
 
