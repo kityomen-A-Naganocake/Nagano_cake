@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+          <!--注文履歴詳細を表示-->
+          <h2>注文履歴詳細</h2>
+        </div>
+        <div class="col-lg-4">
+          <h4>注文情報</h4>
+          <table class="table table-bordered">
+            <tr>
+              <td>注文日</td>
+              <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+            </tr>
+            <tr>
+              <td>配送先</td>
+              <td><%= @order.shipping_name %></td>
+            </tr>
+            <tr>
+              <td>支払方法</td>
+              <td><%= @order.payment_method_i18n %></td>
+            </tr>
+            <tr>
+              <td>ステータス</td>
+              <td><%= @order.status_i18n %></td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-lg-4">
+      <h4>請求情報</h4>
+      <table class="table table-bordered">
+        <tr>
+          <td>商品合計</td>
+          <td>¥<%= @order.payment_amount %>円</td>
+        </tr>
+        <tr>
+          <td>配送料</td>
+          <td>¥800円</td>
+        </tr>
+        <tr>
+          <td>ご請求額</td>
+          <td>¥<%= @order.payment_amount + 800 %>円</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <h4>注文内容</h4>
+      <table class="table table-bordered">
+        <thead>
+          <th>商品</th>
+          <th>単価(税込)</th>
+          <th>個数</th>
+          <th>小計</th>
+        </thead>
+        <tbody>
+        <% @order_details.each do |order_detail| %>
+          <tr>
+            <td><%= order_detail.item.name %></td>
+            <td>¥<%= (order_detail.price * 1.1).floor %>円</td>
+            <td><%= order_detail.quantity %>個</td>
+            <td>¥<%= (order_detail.price * 1.1).floor * order_detail.quantity  %>円</td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

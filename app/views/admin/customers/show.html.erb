@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-11 offset-md-2">
+      <!--会員の詳細画面を表示-->
+      <h2><%= @customer.full_name %>さんの会員詳細</h2>
+      <table class="table table-user-show">
+        <tr>
+          <p>
+            会員ID　              &emsp;&emsp;&emsp;&emsp;<%= @customer.id %>
+          </p>
+          <p>
+            氏名                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<%= @customer.full_name %>
+          </p>
+          <p>
+            フリガナ              &emsp;&emsp;&emsp;&emsp;<%= @customer.kana_full_name %>
+          </p>
+          <p>
+            郵便番号              &emsp;&emsp;&emsp;&emsp;〒<%= @customer.zip_code %>
+          </p>
+          <p>
+            住所                  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<%= @customer.address %>
+          </p>
+          <p>
+            電話番号              &emsp;&emsp;&emsp;&emsp;<%= @customer.telephone_number %>
+          </p>
+          <p>
+            メールアドレス        &emsp;<%= @customer.email %>
+          </p>
+          <p>
+            <!--退会ステータス表示-->
+            会員ステータス  <% if @customer.is_deleted == true%>
+                              <p>退会</p>
+                            <% else %>
+                              <p>有効</p>
+                            <% end %>
+          </p>
+          <%# end %>
+          <!--編集・注文履歴一覧のリンクを表示する-->
+          <td><%= link_to "編集する", edit_admin_customer_path(@customer) %></td>
+          <td><%= link_to "注文履歴一覧をみる", admin_orders_path(@customer) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

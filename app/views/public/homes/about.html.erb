@@ -1,0 +1,25 @@
+<div class="text-center">
+   <h1 class="pb-3">Adout</h1>
+  <div>
+      <!--ながのCAKE紹介文-->
+    <p>ながのCAKEは全国発送可能なケーキ屋さんです。</p>
+    <p>お子様からお年寄りの方までお召し上がりいただけるよう</p>
+    <p>様々なバリエーションをご用意しております。</p>
+    <p>また、全国へ発送可能ですので「いつ」でも「どこでも」ご注文いただけます。</p>
+    <p>ぜひご注文ください。</p>
+  </div>
+  <div class="text-center pt-3">
+    <!--新着のアイテムを1件表示-->
+    <% @items.first(1). each do |item| %>
+    <tr>
+        <td>
+            <!--アイテム画像表示-->
+            <%= link_to item_path(item.id) do %>
+            <!--アイテム画像を表示-->
+                <%= attachment_image_tag item, :image, :fill, 900, 400 %>
+            <% end %>
+        </td>
+    </tr>
+    <% end %>
+  </div>
+</div>
