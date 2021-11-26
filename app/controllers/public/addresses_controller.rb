@@ -1,5 +1,8 @@
 class Public::AddressesController < ApplicationController
      
+    before_action :baria_address
+
+     
      def index
           @shipping_address = ShippingAddress.new
           @shipping_addresses = ShippingAddress.where(customer_id: current_customer.id)
@@ -35,6 +38,12 @@ class Public::AddressesController < ApplicationController
 
      def shipping_address_params
      params.require(:shipping_address).permit(:zip_code, :address, :recipients_name)
+     end
+     
+     def baria_address
+        unless customer_signed_in?
+            redirect_to root_path
+        end
      end
 
 end
